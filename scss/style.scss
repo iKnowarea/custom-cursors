@@ -1,0 +1,128 @@
+@keyframes waitcursor {
+  from {
+    height: 30px;
+    width: 30px;
+  }
+  to {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@keyframes expand {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(3);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.opposite{
+  user-select: none;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+html{
+  cursor: none!important;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background: #000;
+  font-family: "Helvetica Neue","Helvetica","Arial",sans-serif;
+  letter-spacing: 2px;
+}
+
+.title{
+  color: #fff;
+  text-align: center;
+}
+
+.wait{
+  color: #fff;
+}
+
+.on{
+  margin: 50px;
+  display: inline-block;
+  color: red;
+}
+
+.off{
+  margin: 50px;
+  display: inline-block;
+  color: green;
+}
+
+#guo_logo{
+  display: inline-block;
+  margin: 20px;
+  width: 200px;
+}
+
+.cursor {
+  display: none;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  position: fixed;
+  // transition-duration: 50ms;
+  transition-timing-function: ease-out;
+  @extend .opposite;
+  &::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all .3s;
+    @extend .opposite;
+  }
+}
+
+.nocopyright{
+  position: fixed;
+  left: 50%;
+  bottom: 100px;
+  margin-left: -210px;
+  color: #fff;
+  font-size: 10px;
+  width: 420px;
+  transform: scale(.7);
+}
+
+/* Waiting */
+.waitcursor{
+  &::after{
+    animation: waitcursor .5s infinite alternate;
+  }
+}
+
+/* Check */
+.incursor{
+  border: none;
+  background: transparent;
+  &::after{
+    height: 50px;
+    width: 50px;
+    background: #fff;
+  }
+}
+
+/* Click to expand */
+.expand {
+  animation: expand .5s forwards;
+  background: red;
+}
